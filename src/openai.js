@@ -3,6 +3,11 @@ import { createReadStream, createWriteStream } from "fs";
 import axios from "axios";
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
+import { config } from 'dotenv';
+
+config();
+
+const openAI_API_KEY = process.env.OPENAI_API_KEY;
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -15,7 +20,7 @@ class OpenAI {
 
   constructor() {
     const configuration = new Configuration({
-      apiKey: "OPEN_AI_TOKEN",
+      apiKey: openAI_API_KEY,
     });
     this.openAi = new OpenAIApi(configuration);
   }

@@ -3,8 +3,15 @@ import { message } from "telegraf/filters";
 import { ogg } from "./src/ogg.js";
 import { openai } from "./src/openai.js";
 import { code } from "telegraf/format";
+import { config } from 'dotenv';
+const env = process.env.NODE_ENV || 'development';
+config({ path: `.env.${env}` });
 
-const bot = new Telegraf("TELEGRAM_TOKEN");
+
+
+const telegramToken = process.env.TELEGRAM_TOKEN
+
+const bot = new Telegraf(telegramToken);
 bot.use(session());
 
 const INITIAL_SESSION = {
